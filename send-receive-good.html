@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>送る・受け取る | 株式会社名菱運輸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-keyence-b">
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="logo"><a href="index.html">名菱運輸</a></h1>
+      <nav class="nav" aria-hidden="true">
+        <ul class="nav-list">
+          <li><a href="index.html">TOPページ</a></li>
+          <li><a href="service-good.html">実績</a></li>
+          <li><a href="company-good.html">企業情報</a></li>
+          <li><a href="news-good.html">お知らせ</a></li>
+          <li><a href="contact-good.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" aria-label="メニュー" aria-expanded="false"></button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="page-header">
+      <div class="container">
+        <h2 class="page-title">送る・受け取る</h2>
+      </div>
+    </div>
+
+    <section class="cta-blocks cta-blocks--page">
+      <div class="container">
+        <h2 class="section-title visually-hidden">ご利用メニュー</h2>
+        <div class="cta-grid">
+          <div class="cta-card cta-card--track">
+            <h3 class="cta-card__title">配達状況の確認</h3>
+            <p class="cta-card__desc">お問い合わせ番号（伝票番号）で検索できます。</p>
+            <form class="track-form" action="tracking-good.html" method="get">
+              <input type="text" name="no" class="track-input" placeholder="例：234567890" maxlength="10" pattern="[0-9]*" inputmode="numeric" aria-label="お問い合わせ番号">
+              <button type="submit" class="btn btn--primary">確認する</button>
+            </form>
+            <p class="cta-card__link"><a href="tracking-good.html">配達状況確認ページへ</a></p>
+          </div>
+
+          <div class="cta-card cta-card--send">
+            <h3 class="cta-card__title">送る</h3>
+            <ul class="cta-links">
+              <li><a href="contact-good.html">配送依頼</a></li>
+              <li><a href="service-good.html">サービス内容</a></li>
+              <li><a href="contact-good.html">運賃・見積り</a></li>
+            </ul>
+          </div>
+
+          <div class="cta-card cta-card--receive">
+            <h3 class="cta-card__title">受け取る</h3>
+            <ul class="cta-links">
+              <li><a href="contact-good.html">再配達の依頼</a></li>
+              <li><a href="contact-good.html">配送条件の相談</a></li>
+              <li><a href="contact-good.html">お問い合わせ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="page-back"><a href="index.html">トップへ戻る</a></p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">© 2026 株式会社名菱運輸 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
