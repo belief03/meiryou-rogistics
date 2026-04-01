@@ -127,3 +127,16 @@
 - ヒーロー背景の動画差し替え
 
 必要に応じてページを増やしたり、CSS 変数（`:root`）で色・フォントを一括変更できるようにしてあります。
+
+---
+
+## GitHub 更新の最短手順
+
+```bash
+git add .
+git commit -m "Update website content"
+git push
+```
+
+- 変更確認だけしたいとき：`git status`
+- 差分を見たいとき：`git diff`

@@ -12,7 +12,7 @@
 <body class="theme-keyence-b">
   <header class="header">
     <div class="header-inner">
-      <h1 class="logo"><a href="index.html">名菱運輸</a></h1>
+      <h1 class="logo"><a href="index.html" class="logo__link" aria-label="株式会社名菱運輸"><span class="logo__name">名菱運輸</span><span class="logo__sub" lang="en">meiryou logistics</span></a></h1>
       <nav class="nav" aria-hidden="true">
         <ul class="nav-list">
           <li><a href="index.html">TOPページ</a></li>
@@ -33,13 +33,69 @@
       </div>
     </div>
 
-    <section class="content-section">
+    <section class="content-section contact-intro">
       <div class="container container--narrow">
         <h3 class="content-section__title">お気軽にご相談ください</h3>
-        <p class="contact-lead">工作機械の搬入・据付、出荷試験/出荷検査、梱包までワンストップで対応します。まずはお気軽にお問い合わせください。</p>
-        <p class="contact-lead">TEL：052-711-0231</p>
-        <p class="contact-lead">MAIL：</p>
-        <p class="contact-lead">営業時間：平日 8:30〜17:30（土日祝休）</p>
+        <p class="contact-lead">工作機械の搬入・据付、出荷試験／出荷検査、梱包までワンストップで対応します。まずはお気軽にお問い合わせください。</p>
+      </div>
+    </section>
+
+    <section class="content-section content-section--alt contact-page-form">
+      <div class="container container--narrow">
+        <div class="contact-form-wrap" data-animate>
+          <div class="contact-form-panel">
+            <form class="contact-form" action="#" method="post">
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="cf-name">お名前<span class="contact-form__req">必須</span></label>
+                <input class="contact-form__control" id="cf-name" name="name" type="text" required autocomplete="name" placeholder="例）山田 太郎">
+              </div>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="cf-company">会社名<span class="contact-form__optional">任意</span></label>
+                <input class="contact-form__control" id="cf-company" name="company" type="text" autocomplete="organization" placeholder="例）株式会社○○">
+              </div>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="cf-email">メールアドレス<span class="contact-form__req">必須</span></label>
+                <input class="contact-form__control" id="cf-email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="例）info@example.com">
+              </div>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="cf-tel">電話番号<span class="contact-form__optional">任意</span></label>
+                <input class="contact-form__control" id="cf-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="例）052-711-0231">
+              </div>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="cf-type">お問い合わせ種別<span class="contact-form__req">必須</span></label>
+                <select class="contact-form__control" id="cf-type" name="type" required>
+                  <option value="" disabled selected>選択してください</option>
+                  <option value="delivery">搬入・据付</option>
+                  <option value="inspection">出荷試験・出荷検査</option>
+                  <option value="pack">梱包・輸送</option>
+                  <option value="renewal">機械リニューアル・修理</option>
+                  <option value="other">その他</option>
+                </select>
+              </div>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="cf-body">お問い合わせ内容<span class="contact-form__req">必須</span></label>
+                <textarea class="contact-form__control contact-form__control--textarea" id="cf-body" name="message" required rows="6" placeholder="ご用件をできるだけ具体的にご記入ください。"></textarea>
+              </div>
+              <div class="contact-form__field contact-form__check">
+                <input type="checkbox" id="cf-agree" name="agree" value="1" required>
+                <label class="contact-form__check-label" for="cf-agree">個人情報の取り扱いに同意する</label>
+              </div>
+              <div class="contact-form__actions">
+                <button type="submit" class="btn btn--primary contact-form__submit">送信する</button>
+                <p class="contact-form__note">※フォームからメール送信などを行うには、送信先の設定（サーバー処理やメールフォーム用サービス等）が別途必要です。</p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <aside class="contact-tel-panel" data-animate aria-label="お電話でのお問い合わせ">
+          <p class="contact-tel-panel__lead">お電話でのご相談も承ります</p>
+          <a class="contact-tel-panel__tel" href="tel:052-711-0231">
+            <svg class="contact-tel-panel__tel-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span class="contact-tel-panel__tel-num">052-711-0231</span>
+          </a>
+          <p class="contact-tel-panel__hours">受付時間：平日 8:30〜17:30（土日祝休）</p>
+        </aside>
       </div>
     </section>
 
