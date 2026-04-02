@@ -7,10 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="theme-keyence-b">
+  <script src="theme-init.js"></script>
+  <p class="pattern-switch pattern-switch--theme" role="navigation" aria-label="表示テーマ">
+    <a href="?theme=keyence">テーマA（実業・Keyence寄せ）</a>
+    <span class="pattern-switch__sep" aria-hidden="true">|</span>
+    <a href="?theme=tfc">テーマB（余白・編集寄せ）</a>
+  </p>
   <!-- ヘッダー -->
   <header class="header">
     <div class="header-inner">
@@ -76,6 +82,229 @@
       <p class="hero-carousel__hint" aria-hidden="true">スクロール / クリックで切替</p>
     </section>
 
+    <!-- テーマB：正確な日本輪郭（GeoJSON由来）を中央に最大化、名古屋からダイナミックな矢印 -->
+    <section class="hero hero--tfc-map" aria-labelledby="tfc-hero-title">
+      <p class="visually-hidden">
+        ページを開いた直後のみ、日本全体の地図から名古屋へズームし、名古屋を起点に中部・全国へ工作機械が飛び立つ演出が流れます。地図と見出しはそのまま表示されます。
+      </p>
+      <div class="hero--tfc-map__stage">
+        <div class="hero--tfc-map__map" aria-hidden="true">
+          <svg
+            class="tfc-map"
+            viewBox="0 0 1000 900"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <defs>
+              <mask id="tfc-machine-cut-mask">
+                <rect x="0" y="0" width="34" height="20" fill="white" rx="2" ry="2" />
+                <polygon points="0,0 7,0 0,5" fill="black" />
+                <polygon points="34,0 27,0 34,5" fill="black" />
+                <polygon points="0,20 7,20 0,15" fill="black" />
+                <polygon points="34,20 27,20 34,15" fill="black" />
+              </mask>
+              <marker id="tfc-arrow" markerWidth="36" markerHeight="22" refX="32" refY="11" orient="auto" markerUnits="strokeWidth">
+                <image href="images/fleet-showcase.png" x="1" y="1" width="33" height="20" preserveAspectRatio="xMidYMid slice" mask="url(#tfc-machine-cut-mask)" />
+              </marker>
+              <filter id="tfc-glow" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="3.5" result="b" />
+                <feMerge>
+                  <feMergeNode in="b" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="tfc-glow-bloom" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="9" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <g class="tfc-map__japan">
+              <path
+                class="tfc-map__land"
+                d="M 396.59 600.98 L 401.26 613.48 L 380.73 635.54 L 365.76 623.84 L 347.07 632.32 L 337.39 653.64 L 313.63 643.26 L 313.93 625.97 L 334.10 604.22 L 354.83 608.43 L 369.82 593.11 Z"
+              />
+              <path
+                class="tfc-map__land"
+                d="M 627.68 491.87 L 613.95 520.96 L 620.30 539.23 L 601.32 564.92 L 554.73 582.08 L 490.63 584.31 L 438.69 625.93 L 414.19 611.92 L 412.67 584.67 L 349.26 592.71 L 306.11 609.88 L 263.43 610.58 L 300.39 637.40 L 276.06 699.37 L 252.49 714.71 L 234.85 700.54 L 243.79 667.68 L 220.71 657.08 L 205.90 632.08 L 240.37 620.85 L 259.50 597.93 L 296.17 579.08 L 322.91 554.16 L 395.49 543.29 L 434.48 550.74 L 472.63 485.93 L 496.94 503.34 L 550.43 466.88 L 571.17 452.72 L 594.08 408.14 L 587.83 367.14 L 603.23 344.11 L 642.00 337.42 L 661.88 387.99 L 660.80 417.54 L 627.06 454.25 Z"
+              />
+              <path
+                class="tfc-map__land"
+                d="M 734.65 235.51 L 760.29 243.28 L 786.08 227.83 L 794.19 268.76 L 740.10 278.74 L 708.17 314.94 L 650.84 290.02 L 631.00 329.91 L 590.44 330.46 L 585.43 294.21 L 603.46 266.16 L 642.42 264.14 L 653.04 213.71 L 663.82 185.29 L 706.67 223.25 Z"
+              />
+            </g>
+            <g
+              class="tfc-map__ripples"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              transform="translate(479.27,563.36)"
+            >
+              <circle class="tfc-map__ripple tfc-map__ripple--1" cx="0" cy="0" r="28" />
+              <circle class="tfc-map__ripple tfc-map__ripple--2" cx="0" cy="0" r="28" />
+              <circle class="tfc-map__ripple tfc-map__ripple--3" cx="0" cy="0" r="28" />
+            </g>
+            <g
+              class="tfc-map__rays tfc-map__rays--bloom"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              opacity="0.2"
+            >
+              <path class="tfc-map__bloom tfc-map__bloom--1" d="M 479.27 563.36 Q 538 498 618 588" />
+              <path class="tfc-map__bloom tfc-map__bloom--2" d="M 479.27 563.36 Q 405 485 332 518" />
+              <path class="tfc-map__bloom tfc-map__bloom--3" d="M 479.27 563.36 Q 378 548 305 552" />
+              <path class="tfc-map__bloom tfc-map__bloom--4" d="M 479.27 563.36 Q 405 628 352 672" />
+              <path class="tfc-map__bloom tfc-map__bloom--5" d="M 479.27 563.36 Q 448 468 392 412" />
+              <path class="tfc-map__bloom tfc-map__bloom--6" d="M 479.27 563.36 Q 528 488 592 448" />
+            </g>
+            <g
+              class="tfc-map__rays tfc-map__rays--ghost"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              opacity="0.38"
+            >
+              <path class="tfc-map__ray-ghost tfc-map__ray-ghost--1" d="M 479.27 563.36 Q 538 498 618 588" />
+              <path class="tfc-map__ray-ghost tfc-map__ray-ghost--2" d="M 479.27 563.36 Q 405 485 332 518" />
+              <path class="tfc-map__ray-ghost tfc-map__ray-ghost--3" d="M 479.27 563.36 Q 378 548 305 552" />
+              <path class="tfc-map__ray-ghost tfc-map__ray-ghost--4" d="M 479.27 563.36 Q 405 628 352 672" />
+              <path class="tfc-map__ray-ghost tfc-map__ray-ghost--5" d="M 479.27 563.36 Q 448 468 392 412" />
+              <path class="tfc-map__ray-ghost tfc-map__ray-ghost--6" d="M 479.27 563.36 Q 528 488 592 448" />
+            </g>
+            <g
+              class="tfc-map__rays tfc-map__rays--echo"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              opacity="0.35"
+            >
+              <path class="tfc-map__echo tfc-map__echo--1" d="M 479.27 563.36 Q 538 498 618 588" />
+              <path class="tfc-map__echo tfc-map__echo--2" d="M 479.27 563.36 Q 405 485 332 518" />
+              <path class="tfc-map__echo tfc-map__echo--3" d="M 479.27 563.36 Q 378 548 305 552" />
+              <path class="tfc-map__echo tfc-map__echo--4" d="M 479.27 563.36 Q 405 628 352 672" />
+              <path class="tfc-map__echo tfc-map__echo--5" d="M 479.27 563.36 Q 448 468 392 412" />
+              <path class="tfc-map__echo tfc-map__echo--6" d="M 479.27 563.36 Q 528 488 592 448" />
+            </g>
+            <g
+              class="tfc-map__routes"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path class="tfc-map__route tfc-map__route--1" d="M 479.27 563.36 Q 600 470 760 560" />
+              <path class="tfc-map__route tfc-map__route--2" d="M 479.27 563.36 Q 360 458 188 492" />
+              <path class="tfc-map__route tfc-map__route--3" d="M 479.27 563.36 Q 340 560 132 596" />
+              <path class="tfc-map__route tfc-map__route--4" d="M 479.27 563.36 Q 390 692 238 812" />
+              <path class="tfc-map__route tfc-map__route--5" d="M 479.27 563.36 Q 456 388 356 258" />
+              <path class="tfc-map__route tfc-map__route--6" d="M 479.27 563.36 Q 594 430 760 286" />
+            </g>
+            <g
+              class="tfc-map__rays"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              marker-end="url(#tfc-arrow)"
+              filter="url(#tfc-glow-bloom)"
+            >
+              <path class="tfc-map__ray tfc-map__ray--1" d="M 479.27 563.36 Q 600 470 760 560" />
+              <path class="tfc-map__ray tfc-map__ray--2" d="M 479.27 563.36 Q 360 458 188 492" />
+              <path class="tfc-map__ray tfc-map__ray--3" d="M 479.27 563.36 Q 340 560 132 596" />
+              <path class="tfc-map__ray tfc-map__ray--4" d="M 479.27 563.36 Q 390 692 238 812" />
+              <path class="tfc-map__ray tfc-map__ray--5" d="M 479.27 563.36 Q 456 388 356 258" />
+              <path class="tfc-map__ray tfc-map__ray--6" d="M 479.27 563.36 Q 594 430 760 286" />
+            </g>
+            <circle class="tfc-map__hub-ring" cx="479.27" cy="563.36" r="22" />
+            <circle class="tfc-map__hub" cx="479.27" cy="563.36" r="14" />
+            <g class="tfc-map__machine-orbit tfc-map__machine-orbit--1 tfc-map__machine--loaded" transform-origin="479.27 563.36">
+              <image
+                href="images/fleet-showcase.png"
+                x="634"
+                y="550"
+                width="40"
+                height="24"
+                preserveAspectRatio="xMidYMid slice"
+                mask="url(#tfc-machine-cut-mask)"
+              />
+            </g>
+            <g class="tfc-map__machine-orbit tfc-map__machine-orbit--2 tfc-map__machine--empty" transform-origin="479.27 563.36">
+              <image
+                href="images/fleet-showcase.png"
+                x="614"
+                y="462"
+                width="38"
+                height="23"
+                preserveAspectRatio="xMidYMid slice"
+                mask="url(#tfc-machine-cut-mask)"
+              />
+            </g>
+            <g class="tfc-map__machine-orbit tfc-map__machine-orbit--3 tfc-map__machine--loaded" transform-origin="479.27 563.36">
+              <image
+                href="images/fleet-showcase.png"
+                x="534"
+                y="412"
+                width="37"
+                height="22"
+                preserveAspectRatio="xMidYMid slice"
+                mask="url(#tfc-machine-cut-mask)"
+              />
+            </g>
+            <g class="tfc-map__machine-orbit tfc-map__machine-orbit--4 tfc-map__machine--empty" transform-origin="479.27 563.36">
+              <image
+                href="images/fleet-showcase.png"
+                x="382"
+                y="446"
+                width="39"
+                height="23"
+                preserveAspectRatio="xMidYMid slice"
+                mask="url(#tfc-machine-cut-mask)"
+              />
+            </g>
+            <g class="tfc-map__machine-orbit tfc-map__machine-orbit--5 tfc-map__machine--loaded" transform-origin="479.27 563.36">
+              <image
+                href="images/fleet-showcase.png"
+                x="330"
+                y="550"
+                width="38"
+                height="23"
+                preserveAspectRatio="xMidYMid slice"
+                mask="url(#tfc-machine-cut-mask)"
+              />
+            </g>
+            <g class="tfc-map__machine-orbit tfc-map__machine-orbit--6 tfc-map__machine--empty" transform-origin="479.27 563.36">
+              <image
+                href="images/fleet-showcase.png"
+                x="400"
+                y="650"
+                width="37"
+                height="22"
+                preserveAspectRatio="xMidYMid slice"
+                mask="url(#tfc-machine-cut-mask)"
+              />
+            </g>
+          </svg>
+        </div>
+        <div class="hero--tfc-map__overlay">
+          <div class="hero--tfc-map__copy">
+            <p class="hero--tfc-map__en hero--tfc-map__en--left" lang="en">MEIRYO PRIDE</p>
+            <h2 id="tfc-hero-title" class="hero--tfc-map__title hero--tfc-map__title--right">
+              確かな技術で<br />モノづくりを支える
+            </h2>
+            <p class="hero--tfc-map__tagline hero--tfc-map__tagline--left">工作機械のパイオニア</p>
+            <p class="hero--tfc-map__note hero--tfc-map__note--left">名古屋を起点に、中部のモノづくり現場へ。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CSS-B: Keyence寄せ（VALUE / TARGET / STRENGTH） -->
     <section class="brand-highlights" aria-label="大切にしていること、主な取引、信頼の証">
       <div class="container">
@@ -106,37 +335,43 @@
         <p class="problems__lead">出荷試験・検査から梱包、輸送、搬入、据付まで。製造現場の立ち上げをワンストップで支えます。</p>
         <div class="problem-grid">
           <a href="#phase-in" class="problem-card problem-card--phase" data-animate>
-            <img class="problem-card__photo" src="https://images.unsplash.com/photo-1586528116493-4f7f4f9d7f06?auto=format&fit=crop&w=900&q=80" alt="工作機械搬入のイメージ" loading="lazy" />
+            <img class="problem-card__photo" src="assets/tinified-extracted/20191120_151528.jpg" alt="工作機械搬入のイメージ" loading="lazy" />
             <span class="problem-card__step" aria-hidden="true">01</span>
             <span class="problem-card__label">搬入</span>
             <span class="problem-card__text">新規搬入</span>
           </a>
           <a href="#phase-test" class="problem-card problem-card--phase" data-animate>
-            <img class="problem-card__photo" src="https://images.unsplash.com/photo-1581092916370-7c8a4b7f7db8?auto=format&fit=crop&w=900&q=80" alt="出荷試験のイメージ" loading="lazy" />
+            <img
+              class="problem-card__photo problem-card__photo--cycle"
+              src="assets/tinified-extracted/20191120_143205.jpg"
+              alt="出荷試験のイメージ"
+              loading="lazy"
+              data-cycle-sources="assets/tinified-extracted/20191120_143205.jpg,assets/tinified-extracted/20191120_143249.jpg"
+            />
             <span class="problem-card__step" aria-hidden="true">02</span>
             <span class="problem-card__label">出荷試験</span>
             <span class="problem-card__text">出荷前の確認</span>
           </a>
           <a href="#phase-inspection" class="problem-card problem-card--phase" data-animate>
-            <img class="problem-card__photo" src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80" alt="出荷検査のイメージ" loading="lazy" />
+            <img class="problem-card__photo" src="assets/tinified-extracted/20191120_152845.jpg" alt="出荷検査のイメージ" loading="lazy" />
             <span class="problem-card__step" aria-hidden="true">03</span>
             <span class="problem-card__label">出荷検査</span>
             <span class="problem-card__text">仕様・外観確認</span>
           </a>
           <a href="#phase-pack" class="problem-card problem-card--phase" data-animate>
-            <img class="problem-card__photo" src="https://images.unsplash.com/photo-1586528116493-4f7f4f9d7f06?auto=format&fit=crop&w=900&q=80" alt="梱包作業のイメージ" loading="lazy" />
+            <img class="problem-card__photo" src="assets/tinified-extracted/20191120_141024.jpg" alt="梱包作業のイメージ" loading="lazy" />
             <span class="problem-card__step" aria-hidden="true">04</span>
             <span class="problem-card__label">梱包</span>
             <span class="problem-card__text">養生・梱包</span>
           </a>
           <a href="#phase-transport" class="problem-card problem-card--phase" data-animate>
-            <img class="problem-card__photo" src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=900&q=80" alt="輸送のイメージ" loading="lazy" />
+            <img class="problem-card__photo" src="assets/tinified-extracted/DSC_0079.JPG" alt="輸送のイメージ" loading="lazy" />
             <span class="problem-card__step" aria-hidden="true">05</span>
             <span class="problem-card__label">輸送</span>
             <span class="problem-card__text">中部圏の安全輸送</span>
           </a>
           <a href="#phase-install" class="problem-card problem-card--phase" data-animate>
-            <img class="problem-card__photo" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80" alt="据付作業のイメージ" loading="lazy" referrerpolicy="no-referrer" />
+            <img class="problem-card__photo" src="assets/tinified-extracted/DSC_0090.JPG" alt="据付作業のイメージ" loading="lazy" />
             <span class="problem-card__step" aria-hidden="true">06</span>
             <span class="problem-card__label">据付</span>
             <span class="problem-card__text">設置・据え付け</span>

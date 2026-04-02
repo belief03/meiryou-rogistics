@@ -231,3 +231,118 @@
     });
   });
 })();
+
+// ----- テーマ切替バー：現在のテーマを表示（theme-init.js が body クラスを設定済み） -----
+(function () {
+  'use strict';
+
+  function currentTheme() {
+    if (document.body.classList.contains('theme-tfc-b')) return 'tfc';
+    return 'keyence';
+  }
+
+  document.querySelectorAll('.pattern-switch--theme a[href*="theme="]').forEach(function (a) {
+    var href = a.getAttribute('href') || '';
+    var m = href.match(/theme=(\w+)/);
+    if (!m) return;
+    if (m[1] === currentTheme()) {
+      a.setAttribute('aria-current', 'true');
+      a.classList.add('is-current');
+    } else {
+      a.removeAttribute('aria-current');
+      a.classList.remove('is-current');
+    }
+  });
+})();
+
+// ----- テーマB TOP：開幕のみ矢印レイヤーをアニメ後に非表示（地図・テキストは残す） -----
+(function () {
+  'use strict';
+
+  var body = document.body;
+  if (!body.classList.contains('theme-tfc-b')) return;
+
+  var mapHero = document.querySelector('.hero--tfc-map');
+  var photoCycleTimer = null;
+  var photoIndex = 0;
+  var photoClasses = ['tfc-hero-photo-1', 'tfc-hero-photo-2', 'tfc-hero-photo-3'];
+  var switchFadeMs = 420;
+  var photoIntervalMs = 7600;
+  var firstPhotoHoldMs = 10800;
+
+  function applyPhotoClass(nextIndex) {
+    photoClasses.forEach(function (cls) {
+      body.classList.remove(cls);
+    });
+    body.classList.add(photoClasses[nextIndex]);
+  }
+
+  function startHeroPhotoCycle() {
+    if (photoCycleTimer) return;
+    applyPhotoClass(photoIndex);
+
+    function queueNextSwitch(delayMs) {
+      photoCycleTimer = window.setTimeout(function () {
+        body.classList.add('tfc-hero-photo-switch');
+        window.setTimeout(function () {
+          photoIndex = (photoIndex + 1) % photoClasses.length;
+          applyPhotoClass(photoIndex);
+          body.classList.remove('tfc-hero-photo-switch');
+          queueNextSwitch(photoIntervalMs);
+        }, switchFadeMs);
+      }, delayMs);
+    }
+
+    // 1枚目だけ長めに見せて、以降は一定テンポで回す
+    queueNextSwitch(firstPhotoHoldMs);
+  }
+
+  function finishTfcArrowIntro() {
+    body.classList.remove('tfc-hero-intro-pending');
+    body.classList.add('tfc-hero-intro-done');
+    startHeroPhotoCycle();
+  }
+
+  if (!body.classList.contains('tfc-hero-intro-pending')) {
+    if (body.classList.contains('tfc-hero-intro-done')) {
+      startHeroPhotoCycle();
+    }
+    return;
+  }
+
+  if (!mapHero) {
+    body.classList.remove('tfc-hero-intro-pending');
+    return;
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    finishTfcArrowIntro();
+    return;
+  }
+
+  /* styles.css のイントロ演出全体尺（20s）と同期 */
+  window.setTimeout(finishTfcArrowIntro, 20000);
+})();
+
+// ----- 事業カード：出荷試験画像を2種切り替え -----
+(function () {
+  'use strict';
+
+  var cycleImages = document.querySelectorAll('.problem-card__photo--cycle[data-cycle-sources]');
+  if (!cycleImages.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  cycleImages.forEach(function (img) {
+    var sources = (img.getAttribute('data-cycle-sources') || '')
+      .split(',')
+      .map(function (src) { return src.trim(); })
+      .filter(Boolean);
+    if (sources.length < 2) return;
+
+    var idx = 0;
+    window.setInterval(function () {
+      idx = (idx + 1) % sources.length;
+      img.src = sources[idx];
+    }, 4200);
+  });
+})();
