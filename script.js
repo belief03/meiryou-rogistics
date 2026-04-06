@@ -255,7 +255,7 @@
   });
 })();
 
-// ----- テーマB TOP：開幕のみ矢印レイヤーをアニメ後に非表示（地図・テキストは残す） -----
+// ----- テーマB TOP：線描画イントロ後に写真レイヤー＆写真サイクル開始 -----
 (function () {
   'use strict';
 
@@ -265,10 +265,16 @@
   var mapHero = document.querySelector('.hero--tfc-map');
   var photoCycleTimer = null;
   var photoIndex = 0;
-  var photoClasses = ['tfc-hero-photo-1', 'tfc-hero-photo-2', 'tfc-hero-photo-3'];
-  var switchFadeMs = 420;
-  var photoIntervalMs = 7600;
-  var firstPhotoHoldMs = 10800;
+  var photoClasses = [
+    'tfc-hero-photo-1',
+    'tfc-hero-photo-2',
+    'tfc-hero-photo-3',
+    'tfc-hero-photo-4',
+    'tfc-hero-photo-5',
+  ];
+  var switchFadeMs = 600;
+  var photoIntervalMs = 10200;
+  var firstPhotoHoldMs = 15000;
 
   function applyPhotoClass(nextIndex) {
     photoClasses.forEach(function (cls) {
@@ -320,8 +326,8 @@
     return;
   }
 
-  /* styles.css のイントロ演出全体尺（20s）と同期 */
-  window.setTimeout(finishTfcArrowIntro, 20000);
+  /* ラインフロー描画〜流れ開始後、余韻を取ってから写真フェードへ */
+  window.setTimeout(finishTfcArrowIntro, 4800);
 })();
 
 // ----- 事業カード：出荷試験画像を2種切り替え -----
