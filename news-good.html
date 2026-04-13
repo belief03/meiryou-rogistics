@@ -6,29 +6,32 @@
   <title>お知らせ | 株式会社名菱運輸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-v2.css">
 </head>
-<body class="theme-keyence-b">
-  <script src="theme-init.js"></script>
-  <p class="pattern-switch pattern-switch--theme" role="navigation" aria-label="表示テーマ">
-    <a href="?theme=keyence">テーマA（実業・Keyence寄せ）</a>
-    <span class="pattern-switch__sep" aria-hidden="true">|</span>
-    <a href="?theme=tfc">テーマB（余白・編集寄せ）</a>
-  </p>
-  <header class="header">
-    <div class="header-inner">
-      <h1 class="logo"><a href="index.html" class="logo__link" aria-label="株式会社名菱運輸"><span class="logo__name">名菱運輸</span><span class="logo__sub" lang="en">meiryou logistics</span></a></h1>
-      <nav class="nav" aria-hidden="true">
-        <ul class="nav-list">
-          <li><a href="index.html">TOPページ</a></li>
+<body class="page-sub">
+  <header class="site-header site-header--solid" id="siteHeader">
+    <div class="site-header__inner">
+      <a href="index-v2.html" class="site-header__logo" aria-label="株式会社名菱運輸">
+        <img src="assets/logo-mru.png" alt="" class="site-header__logo-mark" width="52" height="52">
+        <div class="site-header__logo-text">
+          <span class="site-header__logo-name">名菱運輸</span>
+          <span class="site-header__logo-sub">MEIRYOU LOGISTICS</span>
+        </div>
+      </a>
+      <nav class="site-header__nav" id="nav" aria-label="メインナビゲーション">
+        <ul class="site-header__nav-list">
+          <li><a href="index-v2.html">TOP</a></li>
           <li><a href="service-good.html">実績</a></li>
           <li><a href="company-good.html">企業情報</a></li>
           <li><a href="news-good.html">お知らせ</a></li>
           <li><a href="contact-good.html">お問い合わせ</a></li>
         </ul>
       </nav>
-      <button class="menu-btn" aria-label="メニュー" aria-expanded="false"></button>
+      <button class="site-header__menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -58,16 +61,31 @@
       </div>
     </section>
 
-    <p class="page-back"><a href="index.html">トップへ戻る</a></p>
+    <p class="page-back"><a href="index-v2.html">トップへ戻る</a></p>
   </main>
-
   <footer class="footer">
+    <div class="footer__accent" aria-hidden="true"></div>
     <div class="container">
-      <p class="footer-copy">© 2026 株式会社名菱運輸 All Rights Reserved.</p>
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo-name">名菱運輸</span>
+          <span class="footer__logo-sub">MEIRYOU LOGISTICS</span>
+        </div>
+        <nav class="footer__nav" aria-label="フッターナビゲーション">
+          <ul class="footer__nav-list">
+            <li><a href="index-v2.html">TOP</a></li>
+            <li><a href="service-good.html">実績</a></li>
+            <li><a href="company-good.html">企業情報</a></li>
+            <li><a href="news-good.html">お知らせ</a></li>
+            <li><a href="contact-good.html">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer__copy">© 2026 株式会社名菱運輸 All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script-v2.js"></script>
 </body>
 </html>
 

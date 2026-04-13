@@ -7,83 +7,66 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-v2.css">
 </head>
-<body class="theme-keyence-b">
-  <script src="theme-init.js"></script>
-  <p class="pattern-switch pattern-switch--theme" role="navigation" aria-label="表示テーマ">
-    <a href="?theme=keyence">テーマA（実業・Keyence寄せ）</a>
-    <span class="pattern-switch__sep" aria-hidden="true">|</span>
-    <a href="?theme=tfc">テーマB（余白・編集寄せ）</a>
-  </p>
-  <header class="header">
-    <div class="header-inner">
-      <h1 class="logo"><a href="index.html" class="logo__link" aria-label="株式会社名菱運輸"><span class="logo__name">名菱運輸</span><span class="logo__sub" lang="en">meiryou logistics</span></a></h1>
-      <nav class="nav" aria-hidden="true">
-        <ul class="nav-list">
-          <li><a href="index.html">TOPページ</a></li>
+<body class="page-sub">
+  <header class="site-header site-header--solid" id="siteHeader">
+    <div class="site-header__inner">
+      <a href="index-v2.html" class="site-header__logo" aria-label="株式会社名菱運輸">
+        <img src="assets/logo-mru.png" alt="" class="site-header__logo-mark" width="52" height="52">
+        <div class="site-header__logo-text">
+          <span class="site-header__logo-name">名菱運輸</span>
+          <span class="site-header__logo-sub">MEIRYOU LOGISTICS</span>
+        </div>
+      </a>
+      <nav class="site-header__nav" id="nav" aria-label="メインナビゲーション">
+        <ul class="site-header__nav-list">
+          <li><a href="index-v2.html">TOP</a></li>
           <li><a href="service-good.html">実績</a></li>
           <li><a href="company-good.html">企業情報</a></li>
           <li><a href="news-good.html">お知らせ</a></li>
           <li><a href="contact-good.html">お問い合わせ</a></li>
         </ul>
       </nav>
-      <button class="menu-btn" aria-label="メニュー" aria-expanded="false"></button>
+      <button class="site-header__menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
   <main class="page-main">
-    <!-- 会社概要タブ：自動再生ヒーロー -->
-    <section class="hero hero--carousel hero--company" aria-roledescription="紹介映像" aria-label="企業のご紹介（シーンがゆっくりつながります）" data-hero-carousel data-hero-autoplay="true" data-hero-interval="12000">
-      <div class="hero-slides">
-        <article class="hero-slide is-active" data-hero-slide aria-hidden="false">
-          <div class="hero-bg hero-bg--ops1"></div>
-          <div class="hero-content">
-            <p class="hero-catch">モノづくりを支える使命</p>
-            <p class="hero-sub">名古屋を起点に中部圏へ。</p>
-          </div>
-        </article>
-        <article class="hero-slide" data-hero-slide aria-hidden="true">
-          <div class="hero-bg hero-bg--ops2"></div>
-          <div class="hero-content">
-            <p class="hero-catch">確かな技術力</p>
-            <p class="hero-sub">出荷試験から据付まで一気通貫。</p>
-          </div>
-        </article>
-        <article class="hero-slide hero-slide--machine" data-hero-slide aria-hidden="true">
-          <div class="hero-bg hero-bg--company"></div>
-          <div class="hero-content">
-            <p class="hero-catch">工作機械のパイオニア</p>
-            <p class="hero-sub">新規搬入累計2,000件以上。</p>
-          </div>
-        </article>
+    <!-- 企業情報ヒーロー（v2 Ken Burns） -->
+    <section class="hero hero--sub hero--company-v2" id="hero">
+      <div class="hero__bg">
+        <div class="hero__slide is-active" style="background-image: url('assets/tinified-extracted/20191120_151628.jpg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/tinified-extracted/DSC_0090.JPG')"></div>
+        <div class="hero__slide" style="background-image: url('assets/tinified-extracted/20191120_144749.jpg')"></div>
       </div>
-      <div class="hero-carousel__controls">
-        <button type="button" class="hero-carousel__btn hero-carousel__btn--prev" aria-label="前のスライドへ"></button>
-        <div class="hero-carousel__dots" aria-label="スライドの選択"></div>
-        <button type="button" class="hero-carousel__btn hero-carousel__btn--next" aria-label="次のスライドへ"></button>
+      <div class="hero__overlay"></div>
+      <div class="sub-hero__title-wrap">
+        <p class="sub-hero__kicker">COMPANY</p>
+        <h2 class="sub-hero__title">企業情報</h2>
       </div>
     </section>
 
-    <div class="page-header page-header--about">
-      <div class="container">
-        <div class="page-header__reveal" data-animate>
-          <p class="page-header__kicker">企業情報</p>
-          <h2 class="page-title page-title--about">ABOUT US</h2>
-          <div class="page-header__rule" aria-hidden="true"></div>
-        </div>
-      </div>
-    </div>
-
     <section class="content-section">
       <div class="container container--narrow">
+        <p class="page-header__kicker company-about-kicker" data-animate>ABOUT US</p>
         <h3 class="content-section__title">代表挨拶</h3>
         <div class="greeting" data-animate>
           <p class="greeting__text">
-            当社は、名古屋を起点に中部圏のものづくり現場へ、工作機械を確実に届けることを使命として事業を続けてまいりました。
-            出荷試験・出荷検査・梱包・輸送・搬入・据付までを一貫して担い、安全で丁寧な作業品質を最優先に取り組んでいます。
-            今後も、技術と連携力を磨き、現場に信頼されるパートナーであり続けます。
+            当社は、名古屋を起点に<br>
+            中部圏のものづくり現場へ、<br>
+            工作機械を確実に届けることを使命として<br>
+            事業を続けてまいりました。<br><br>
+            出荷試験・出荷検査・梱包・輸送・<br>
+            搬入・据付までを一貫して担い、<br>
+            安全で丁寧な作業品質を<br>
+            最優先に取り組んでいます。<br><br>
+            今後も、技術と連携力を磨き、<br>
+            現場に信頼されるパートナーであり続けます。
           </p>
           <p class="greeting__sign">代表取締役　新間 健一朗</p>
         </div>
@@ -171,16 +154,31 @@
       </div>
     </section>
 
-    <p class="page-back"><a href="index.html">トップへ戻る</a></p>
+    <p class="page-back"><a href="index-v2.html">トップへ戻る</a></p>
   </main>
-
   <footer class="footer">
+    <div class="footer__accent" aria-hidden="true"></div>
     <div class="container">
-      <p class="footer-copy">© 2026 株式会社名菱運輸 All Rights Reserved.</p>
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo-name">名菱運輸</span>
+          <span class="footer__logo-sub">MEIRYOU LOGISTICS</span>
+        </div>
+        <nav class="footer__nav" aria-label="フッターナビゲーション">
+          <ul class="footer__nav-list">
+            <li><a href="index-v2.html">TOP</a></li>
+            <li><a href="service-good.html">実績</a></li>
+            <li><a href="company-good.html">企業情報</a></li>
+            <li><a href="news-good.html">お知らせ</a></li>
+            <li><a href="contact-good.html">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer__copy">© 2026 株式会社名菱運輸 All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script-v2.js"></script>
 </body>
 </html>
 
