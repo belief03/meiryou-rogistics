@@ -366,7 +366,8 @@ ul { list-style: none; }
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(10, 22, 40, 0.98);
+    background: #0a1628;
+    background-color: #0a1628;
     z-index: 1000;
   }
 
@@ -375,8 +376,12 @@ ul { list-style: none; }
     gap: 2rem;
   }
 
-  body.page-sub .site-header__nav-list a {
-    color: rgba(255, 255, 255, 0.9);
+  body.page-sub .site-header__nav-list a,
+  body.page-sub .site-header__nav-list a:link,
+  body.page-sub .site-header__nav-list a:visited,
+  body.page-sub .site-header__nav-list a:hover,
+  body.page-sub .site-header__nav-list a:focus {
+    color: #ffffff;
     font-size: 1.3rem;
     font-family: var(--font-serif);
     font-weight: 500;
@@ -765,11 +770,15 @@ body.page-sub .page-main {
   line-height: 1.8;
 }
 
-/* 下層共通：グローバルヘッダーの高さ・内側幅を統一（ソリッド時の詰まりを解消） */
-body.page-sub .site-header {
+/* 下層共通：ヒーロー無しページでも文字が背景に溶けないよう常に濃色バー＋明色文字 */
+body.page-sub .site-header,
+body.page-sub .site-header.site-header--solid {
   width: 100%;
   max-width: none;
   box-sizing: border-box;
+  background: #0a1628;
+  background-color: #0a1628;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.15);
 }
 
 body.page-sub .site-header__inner {
@@ -792,6 +801,31 @@ body.page-sub .site-header__nav {
   align-items: center;
 }
 
+/* styles.css の a { color: primary } より優先してヘッダー内リンクを明色に固定 */
+body.page-sub .site-header a,
+body.page-sub .site-header a:link,
+body.page-sub .site-header a:visited {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+body.page-sub .site-header .site-header__logo-name {
+  color: var(--color-gold);
+}
+
+body.page-sub .site-header .site-header__logo-sub {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+body.page-sub .site-header .site-header__nav-list a:hover,
+body.page-sub .site-header .site-header__nav-list a:focus,
+body.page-sub .site-header .site-header__nav-list a.is-current {
+  color: #ffffff;
+}
+
+body.page-sub .site-header__menu-btn span {
+  background: rgba(255, 255, 255, 0.92);
+}
+
 @media (min-width: 769px) {
   body.page-sub .site-header__nav-list a {
     white-space: nowrap;
@@ -799,6 +833,7 @@ body.page-sub .site-header__nav {
     font-weight: 500;
     line-height: 1.35;
     padding: 0.35rem 0;
+    color: rgba(255, 255, 255, 0.88);
   }
 }
 
