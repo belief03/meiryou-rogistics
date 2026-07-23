@@ -265,7 +265,55 @@ ul { list-style: none; }
   transform: translateY(-50%) rotate(-45deg);
 }
 
+/* タブレット以下：負マージンでロゴが切れないようリセット */
+@media (max-width: 980px) {
+  .site-header__logo {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 768px) {
+  :root {
+    --container-padding: clamp(1.5rem, 5.5vw, 2rem);
+    --section-padding: clamp(3.75rem, 9vw, 6rem);
+  }
+
+  .site-header__inner {
+    padding: 0.85rem var(--container-padding);
+    gap: 0.75rem;
+  }
+
+  .site-header--solid .site-header__inner {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  /* ロゴ全体がヘッダー内に収まるよう縮小 */
+  .site-header__logo {
+    margin-left: 0;
+    gap: 0.45rem;
+    min-width: 0;
+    max-width: calc(100% - 3.25rem);
+  }
+
+  .site-header__logo-mark {
+    width: 40px;
+  }
+
+  .site-header__logo-text {
+    min-width: 0;
+  }
+
+  .site-header__logo-name {
+    font-size: 1.12rem;
+    letter-spacing: 0.1em;
+  }
+
+  .site-header__logo-sub {
+    font-size: 0.48rem;
+    letter-spacing: 0.14em;
+  }
+
   .site-header__menu-btn { display: block; }
 
   .site-header__nav {
@@ -282,6 +330,7 @@ ul { list-style: none; }
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease;
     backdrop-filter: blur(20px);
+    z-index: 1000;
   }
 
   .site-header__nav.is-open {
@@ -298,6 +347,98 @@ ul { list-style: none; }
     font-size: 1.3rem;
     font-family: var(--font-serif);
     letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* 下層も TOP と同じフルスクリーンメニュー見た目に統一 */
+  body.page-sub .site-header__inner {
+    min-height: 0;
+  }
+
+  body.page-sub .site-header--solid .site-header__inner {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  body.page-sub .site-header__nav {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 22, 40, 0.98);
+    z-index: 1000;
+  }
+
+  body.page-sub .site-header__nav-list {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  body.page-sub .site-header__nav-list a {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3rem;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  /* ヒーロー・本文を少し縮小し、左右余白を確保 */
+  .hero {
+    height: 100svh;
+    min-height: 520px;
+  }
+
+  .hero__content {
+    padding: 0 calc(var(--container-padding) + 0.25rem);
+    max-width: 36rem;
+  }
+
+  .hero__title-line {
+    font-size: clamp(1.5rem, 6.8vw, 2.05rem);
+  }
+
+  .hero__sub {
+    font-size: 0.9rem;
+    line-height: 1.85;
+  }
+
+  .hero--sub {
+    height: clamp(220px, 34vh, 340px);
+  }
+
+  .hero.hero--sub.hero--company-v2 {
+    height: clamp(260px, 42vh, 440px);
+    min-height: clamp(260px, 42vh, 440px);
+  }
+
+  .sub-hero__title-wrap {
+    padding: 4.5rem var(--container-padding) 1.75rem;
+  }
+
+  .sub-hero__title {
+    font-size: clamp(1.2rem, 5.5vw, 1.75rem);
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    margin-bottom: clamp(1.75rem, 5vw, 2.75rem);
+  }
+
+  body.page-sub .content-section {
+    padding-top: 2.35rem;
+    padding-bottom: 2.35rem;
+  }
+
+  body.page-sub .page-main > :first-child:not(.hero) {
+    padding-top: clamp(4rem, 12vw, 5rem);
+  }
+
+  body.page-sub .page-header--lower,
+  body.page-sub .page-header--records {
+    padding-top: clamp(4.2rem, 12vw, 5.2rem);
   }
 }
 
