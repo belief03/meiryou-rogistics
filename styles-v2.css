@@ -655,7 +655,38 @@ body.page-sub .page-main {
   line-height: 1.8;
 }
 
-/* 下層ヘッダーは TOP の .site-header / --solid 仕様をそのまま使用（個別上書きしない） */
+/* 下層：メニュー背景をTOPソリッドと同じ濃紺で確実表示（余白・高さは変えない）
+   半透明+backdrop-filterだと明るいページ上で紺が薄く見えるため不透明にする */
+body.page-sub .site-header.site-header--solid {
+  background: #0a1628;
+  background-color: #0a1628;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.page-sub .site-header .site-header__nav-list a,
+body.page-sub .site-header .site-header__nav-list a:link,
+body.page-sub .site-header .site-header__nav-list a:visited {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+body.page-sub .site-header .site-header__logo-name {
+  color: var(--color-gold);
+}
+
+body.page-sub .site-header .site-header__logo-sub {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+body.page-sub .site-header .site-header__nav-list a:hover,
+body.page-sub .site-header .site-header__nav-list a:focus,
+body.page-sub .site-header .site-header__nav-list a.is-current {
+  color: #ffffff;
+}
+
+body.page-sub .site-header__menu-btn span {
+  background: rgba(255, 255, 255, 0.92);
+}
 
 /* 固定ヘッダー直下に見出しが潜らないよう（先頭が .hero のページは除外） */
 body.page-sub .page-main > :first-child:not(.hero) {
