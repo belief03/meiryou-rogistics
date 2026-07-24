@@ -648,6 +648,13 @@ ul { list-style: none; }
   opacity: 1;
 }
 
+/* 企業情報ヒーロー：「企業情報」を大きめに */
+.hero--company-v2 .sub-hero__title {
+  font-size: clamp(2.1rem, 5.8vw, 3.5rem);
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+}
+
 body.page-sub .page-main {
   flex: 1 0 auto;
   font-family: var(--font-sans);
