@@ -53,7 +53,14 @@
       <div class="container container--narrow">
         <div class="contact-form-wrap" data-animate>
           <div class="contact-form-panel">
-            <form class="contact-form" action="#" method="post">
+            <div class="contact-form__alert" id="contactFormError" hidden role="alert">
+              送信に失敗しました。入力内容をご確認のうえ、再度お試しください。うまくいかない場合はお電話（052-711-0231）にてご連絡ください。
+            </div>
+            <form class="contact-form" action="contact-send.php" method="post" id="contactForm">
+              <div class="contact-form__hp" aria-hidden="true">
+                <label for="cf-website">Website</label>
+                <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+              </div>
               <div class="contact-form__field">
                 <label class="contact-form__label" for="cf-name">お名前<span class="contact-form__req">必須</span></label>
                 <input class="contact-form__control" id="cf-name" name="name" type="text" required autocomplete="name" placeholder="例）山田 太郎">
@@ -132,6 +139,25 @@
   </footer>
 
   <script src="script-v2.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var alertEl = document.getElementById('contactFormError');
+      if (alertEl && (params.get('error') === '1' || params.get('error') === 'send')) {
+        alertEl.hidden = false;
+        alertEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      var form = document.getElementById('contactForm');
+      if (!form) return;
+      form.addEventListener('submit', function () {
+        var btn = form.querySelector('.contact-form__submit');
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = '送信中…';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
 

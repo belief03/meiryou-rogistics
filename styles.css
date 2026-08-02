@@ -1968,6 +1968,58 @@ select.contact-form__control {
   line-height: 1.65;
 }
 
+.contact-form__alert {
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #c45c4a;
+  border-radius: 4px;
+  background: #fdf2f0;
+  color: #8a2f22;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-thanks {
+  text-align: left;
+}
+
+.contact-thanks__lead {
+  margin: 0 0 1rem;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  font-weight: 600;
+  color: var(--color-text, #1a1a2e);
+  line-height: 1.6;
+}
+
+.contact-thanks__tel {
+  margin: 1.5rem 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-light, #5a5a6a);
+  line-height: 1.8;
+}
+
+.contact-thanks__tel a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.contact-thanks__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin: 2rem 0 0;
+}
+
 .theme-keyence-b .contact-form__label {
   color: var(--color-primary-dark);
 }
