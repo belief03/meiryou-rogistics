@@ -152,21 +152,45 @@
   // ============================================================
   var menuBtn = document.getElementById('menuBtn');
   var nav = document.getElementById('nav');
+  var navScrollY = 0;
+
+  function setNavOpen(isOpen) {
+    if (!menuBtn || !nav) return;
+    menuBtn.classList.toggle('is-open', isOpen);
+    nav.classList.toggle('is-open', isOpen);
+    if (header) {
+      header.classList.toggle('is-nav-open', isOpen);
+    }
+    menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+
+    if (isOpen) {
+      navScrollY = window.scrollY || window.pageYOffset;
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-' + navScrollY + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, navScrollY);
+    }
+  }
 
   if (menuBtn && nav) {
     menuBtn.addEventListener('click', function () {
-      var isOpen = menuBtn.classList.toggle('is-open');
-      nav.classList.toggle('is-open', isOpen);
-      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      setNavOpen(!menuBtn.classList.contains('is-open'));
     });
 
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        menuBtn.classList.remove('is-open');
-        nav.classList.remove('is-open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        setNavOpen(false);
       });
     });
   }

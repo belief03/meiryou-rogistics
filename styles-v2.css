@@ -300,36 +300,57 @@ ul { list-style: none; }
 
   .site-header__menu-btn { display: block; }
 
+  .site-header.is-nav-open {
+    z-index: 1100;
+    background: rgba(10, 22, 40, 0.98);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.2);
+  }
+
   .site-header__nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1100;
+    min-height: 100vh;
+    min-height: 100dvh;
     background: rgba(10, 22, 40, 0.98);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.4s ease, visibility 0.4s ease;
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .site-header__nav.is-open {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .site-header__nav-list {
     flex-direction: column;
     gap: 2rem;
+    padding: 5.5rem var(--container-padding) 2.5rem;
   }
 
   .site-header__nav-list a {
     font-size: 1.3rem;
     font-family: var(--font-serif);
     letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .hero__slide--heavy-lift {
+    background-image: url('assets/tinified-extracted/hero-heavy-lift-mobile.jpg');
+    background-position: center 42%;
   }
 }
 
@@ -356,17 +377,26 @@ ul { list-style: none; }
 .hero__slide {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: scale(1.08);
-  transition: opacity 2s ease, transform 12s ease;
+  transition: opacity 2s ease, transform 12s ease, visibility 0s linear 2s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .hero__slide.is-active {
+  z-index: 1;
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   transform: scale(1);
+  transition: opacity 2s ease, transform 12s ease, visibility 0s linear 0s;
 }
 
 /* Ken Burns: active slides slowly zoom */
@@ -388,6 +418,7 @@ ul { list-style: none; }
 }
 
 .hero__slide--heavy-lift {
+  background-image: url('assets/tinified-extracted/hero-heavy-lift-wide.jpg');
   background-position: center center;
 }
 
@@ -1476,10 +1507,14 @@ body.page-home.hero-intro-done .hero-intro {
   }
 
   .hero__slide {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
   }
 
-  .hero__slide.is-active { transform: scale(1); }
+  .hero__slide.is-active {
+    transform: scale(1);
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0s linear 0s;
+  }
 
   [data-animate] {
     opacity: 1;
